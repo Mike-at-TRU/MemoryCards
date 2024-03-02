@@ -2,9 +2,13 @@
     background-color: black;
     border: none;
     color: white;
-    padding: 35px 25px;
+    padding: 0px 0px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.memoryCardImage {
+    width: 60px;
 }

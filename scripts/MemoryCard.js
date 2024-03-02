@@ -1,36 +1,37 @@
-export class MemoryCard {
+export class MemoryCard extends HTMLElement {
     #isFliped = false;
     #isRemoved = false;
-    #ratioForCards = 2.5 / 3.5;
-    #identifier;
-    constructor(identifier) {
-        this.#identifier = identifier;
+
+    constructor(id, image, cardValue) {
+        super();
+        this.id = id;
+        this.image = image;
+        this.cardValue = cardValue; //this was privite and I couldn't understand why it kept saying undefined 
     }
 
-    hide() {
-        this.#isFliped = false;
-    }
+    // hide() {
+    //     this.#isFliped = false;
+    // }
 
-    reveal() {
-        this.#isFliped = true;
-    }
+    // reveal() {
+    //     this.#isFliped = true;
+    // }
 
-    isFilped() {
-        return this.#isFliped;
-    }
+    // isFilped() {
+    //     return this.#isFliped;
+    // }
 
-    isEqual(memoryCardToCheck) {
-        return this.#identifier === memoryCardToCheck.identifier;
-    }
+    // isEqual(memoryCardToCheck) {
+    //     return this.cardValue === memoryCardToCheck.cardValue;
+    // }
 
-    remove() {
-        this.#isRemoved = true;
-    }
+    // remove() {
+    //     this.#isRemoved = true;
+    // }
 
-    isRemoved() {
-        cdsa;
-        return this.#isRemoved;
-    }
+    // isRemoved() {
+    //     return this.#isRemoved;
+    // }
 
 
 }

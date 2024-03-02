@@ -1,47 +1,60 @@
-document.addEventListener(`DOMContentLoaded`, () => {
-    class MemoryCard {
-        #isFliped = false;
-        #isRemoved = false;
-        #ratioForCards = 2.5 / 3.5;
+import { MemoryCard } from "./MemoryCard.js";
 
-        constructor(cardValue) {
-            this.cardValue = cardValue; //this was privite and I couldn't understand why it kept saying undefined 
-        }
+customElements.define("memory-cards", MemoryCard);
 
-        hide() {
-            this.#isFliped = false;
-        }
-
-        reveal() {
-            this.#isFliped = true;
-        }
-
-        isFilped() {
-            return this.#isFliped;
-        }
-
-        isEqual(memoryCardToCheck) {
-            return this.cardValue === memoryCardToCheck.cardValue;
-        }
-
-        remove() {
-            this.#isRemoved = true;
-        }
-
-        isRemoved() {
-            return this.#isRemoved;
-        }
+const testMeomoryCards = [{
+    image: `./assets/Black_Cards/AceOfHearts.png`
+}, { image: `./assets/Black_Cards/Background.png` }];
+function shuffle(array) {
+    const length = array.length;
+    let randomPositionToSwap;
+    let tempPosition;
+    const imutableArray = JSON.parse(JSON.stringify(array));
 
 
+    for (let i = 0; i < length; i++) {
+
+
+        randomPositionToSwap = Math.floor(Math.random() * length);
+        tempPosition = imutableArray[randomPositionToSwap];
+        imutableArray[randomPositionToSwap] = imutableArray[i];
+        imutableArray[i] = tempPosition;
     }
 
+    return imutableArray;
+}
 
-    const allTheCardElements = document.querySelectorAll(".cards");
 
+document.addEventListener(`DOMContentLoaded`, () => {
+
+    let cardImgPicked = `./assets/Black_Cards/`;
+
+    const cardTemplate = document.querySelector("#cardTemplate");
+
+    const numberOfPairsWithMatches = 1;
+
+    const allCardData = testMeomoryCards.flatMap(
+        ({ image }, index) => Array(numberOfPairsWithMatches * 2).fill(0).map(
+            (_) => ({ image, value: index })
+        )
+        //[{ image, value: index }, { image, value: index }]
+    );
+    console.log(allCardData);
+    const shuffledCardData = shuffle(allCardData);
+    console.log(shuffledCardData);
+
+    const cardMap = shuffledCardData.reduce((acc, nextCard, id) => {
+        if (!acc.has(id)) {
+            acc.set(id, new MemoryCard(id, nextCard.image, nextCard.value));
+            return acc;
+        }
+        throw Error("this ID already has been used");
+    }, new Map());
+    console.log({ cardMap });
     let lastPickedCardID;
     let bothCardsFlipped;
     let gameWon = false;
-    allTheCardElements.forEach(cardElement => cardElement.textContent = `?`);
+    allTheCardElements.forEach(cardElement => cardElement.innerHTML = `<img src='${cardImgPicked + 'Background.png'}' class="memoryCardImage">`);
 
     const allTheCards = Array.from(allTheCardElements).reduce((cardElements, next) => {
         if (!cardElements.has(next.id)) {
@@ -57,7 +70,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         const id = cardElement.id;
         const card = allTheCards.get(id);
 
-        console.log(id);
+
         if (id === lastPickedCardID) {
             console.log('Sorry, That last card was already chosen, please choose another card');
         }
@@ -69,8 +82,8 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
             }
             card.reveal();
-            cardElement.textContent = card.cardValue;
-            console.log(cardElement.textContent);
+            cardElement.innerHTML = `<img src='${cardImgPicked + 'AceOfHearts.png'}' class="memoryCardImage">`;
+            //card.cardValue;
             bothCardsFlipped = returnNotBool(bothCardsFlipped);
 
             if (bothCardsFlipped) {
@@ -80,8 +93,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
 
         }
-        console.log(card);
-        console.log(bothCardsFlipped);
+
 
 
     }));
