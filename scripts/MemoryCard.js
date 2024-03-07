@@ -1,14 +1,16 @@
-export class MemoryCard extends HTMLElement {
+export class MemoryCard {
     #isFliped = false;
     #isRemoved = false;
 
     constructor(id, frontImage, background, cardValue) {
-        super();
         this.id = id;
         this.frontImage = frontImage;
         this.background = background;
         this.cardValue = cardValue; //this was privite and I couldn't understand why it kept saying undefined 
     }
+
+
+
 
     hide() {
         this.#isFliped = false;
@@ -33,23 +35,25 @@ export class MemoryCard extends HTMLElement {
     isRemoved() {
         return this.#isRemoved;
     }
-    connectedCallback() {
-        //get the template
-        const template = document.querySelector("#cardTemplate");
+    // connectedCallback() {
+    //     //get the template
+    //     const template = document.querySelector("#cardTemplate");
 
-        //clone it's content
-        const contentNode = template.content.cloneNode(true);
+    //     //clone it's content
+    //     const contentNode = template.content.cloneNode(true);
 
-        //bind some data
-
-
-        //TODO Populate the 
+    //     //bind some data
 
 
-        //append to DOM
-        this.appendChild(contentNode);
-    }
+    //     //TODO Populate the 
 
+
+    //     //append to DOM
+    //     this.appendChild(contentNode);
+    // }
+    // toString() {
+    //     return `id:${identifyer} frontImage:${this.frontImage} background:${this.background} cardValue:${this.cardValue}`;
+    // }
 
 }
 
