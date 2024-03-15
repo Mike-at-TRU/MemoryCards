@@ -36,7 +36,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
     // const cardTemplate = document.querySelector("#cardTemplate"); //ended up just using default button
 
-    const numberOfPairsWithMatches = 20; //will depend on dificulty, hard wired for now
+    const numberOfPairsWithMatches = 8; //will depend on dificulty, hard wired for now
 
     const numberOfCardsFromServer = 1; //number of random images that will be used
 
