@@ -14,7 +14,7 @@ document.addEventListener(`DOMContentLoaded`, async () => {
     cardBackOptions.forEach((x) => {
         const button = document.createElement(`button`);
         console.log(x);
-        button.innerHTML = `<img src='${x}'/>`;
+        button.innerHTML = `<img src='${x}'/>`; //why does this look weird
         button.classList.add(`cardBackOptions`);
         cardBackSelection.appendChild(button);
 
