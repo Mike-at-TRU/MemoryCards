@@ -2,11 +2,12 @@ export class MemoryCard {
     #isFliped = false;
     #isRemoved = false;
 
-    constructor(id, frontImage, background, cardValue) {
+    constructor(id, frontImage, backImage, cardValue, audio) {
         this.id = id;
         this.frontImage = frontImage;
-        this.background = background;
+        this.backImage = backImage;
         this.cardValue = cardValue; //this was privite and I couldn't understand why it kept saying undefined 
+        this.audio = audio;
     }
 
 

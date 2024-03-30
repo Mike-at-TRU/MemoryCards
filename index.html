@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michaels Amazing Match</title>
-    <script src="scripts/script.js" type="module" defer></script>
+    <script src="testing.js" type="module" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="winScreen"></div>
+    <div id="start"></div>
+    <div id="selections">
+        <div id="cardFront"></div>
+        <div id="cardBack"></div>
+        <div id="difficulty"></div>
+    </div>
     <div id="cards"></div>
-    <template id="cardTemplate">
-        <button class='cards'></button>
-    </template>
+    <div class="winScreen"></div>
+
 
 </body>
 

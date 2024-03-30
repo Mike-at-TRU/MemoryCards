@@ -19,3 +19,22 @@
 .REMOVED {
     width: 150px;
 }
+
+.gameWonScreen {
+    color: magenta;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+
+    line-height: 200px;
+    height: 200px;
+    text-align: center;
+
+    font-size: 250pt;
+}
+
+.startButton {
+    color: blue;
+}
+
+.cardBackOptions {
+    width: 50px;
+}
